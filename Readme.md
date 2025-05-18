@@ -1,4 +1,4 @@
-Tento projekt je strukturovaný jako monorepo, který zahrnuje
+Tento projekt je strukturovaný jako monorepo, které zahrnuje
 Backend napsaný v PHP pomocí frameworku Laravel a poskytuje REST API.
 Frontend je postavený na Reactu.
 Databáze je PostgreSQL, která běží v rámci Docker infrastruktury.
