@@ -2,7 +2,7 @@ const API_BASE_URL = '/api';
 
 export const api = {
   get: async <T>(endpoint: string, params?: Record<string, string | number | undefined>): Promise<T> => {
-    const url = new URL(`${API_BASE_URL}${endpoint}`, window.location.origin);
+    const url = new URL(`${API_BASE_URL}${endpoint}`, 'http://localhost:8000');
     
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
