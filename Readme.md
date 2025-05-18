@@ -15,20 +15,5 @@ php artisan db:seed
 ## Kontrola rout
 php artisan route:list
 
-# Obsluha
-GET http://localhost:8000/api/ping
-
-GET http://localhost:8000/api/products
-
-GET http://localhost:8000/api/products/1
-
-POST http://localhost:8000/api/products
-{"name": "Šiška", "price": 12.5, "stock": 300}
-
-PUT http://localhost:8000/api/products/1
-{
-  "price": 6.0,
-  "stock": 150
-}
-
-DELETE http://localhost:8000/api/products/1
+# OpenApi
+http://localhost:8000/docs
