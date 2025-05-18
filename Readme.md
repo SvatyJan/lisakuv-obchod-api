@@ -16,4 +16,8 @@ php artisan db:seed
 php artisan route:list
 
 # OpenApi
-http://localhost:8000/docs
+Frontend: http://localhost:5173/
+
+OpenApi: http://localhost:8000/docs
+
+Backend: http://localhost:8000/
