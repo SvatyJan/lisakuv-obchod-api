@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  lisak-data:
+    name: lisak-data
+
+services:
+  lisak-db:
+    image: postgres:16.1-alpine
+    container_name: lisak-db
+    environment:
+      - POSTGRES_USER=${DB_USER:-lisak}
+      - POSTGRES_DB=${DB_NAME:-lisak}
+      - POSTGRES_PASSWORD=${DB_PASS:-lisak}
+    ports:
+      - ${DB_PORT:-5432}:5432
+    volumes:
+      - lisak-data:/var/lib/postgresql/data
+    restart: unless-stopped
