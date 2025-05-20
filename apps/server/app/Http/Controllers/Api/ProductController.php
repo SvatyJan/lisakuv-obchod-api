@@ -16,19 +16,22 @@ class ProductController
      * @queryParam min_stock integer Minimální množství na skladě. Example: 10
      * @response 200 scenario="Úspěšný výpis" [{"id":1,"name":"Jablko",...}]
      */
-    public function getProducts(Request $request)
+    public function getProducts(Request $request): JsonResponse
     {
         $query = Product::query();
 
-        if ($request->has('name')) {
+        if ($request->has('name')) 
+        {
             $query->where('name', 'ilike', '%' . $request->input('name') . '%');
         }
 
-        if ($request->has('min_stock')) {
+        if ($request->has('min_stock')) 
+        {
             $query->where('stock', '>=', (int) $request->input('min_stock'));
         }
 
-        if ($request->has('max_stock')) {
+        if ($request->has('max_stock')) 
+        {
             $query->where('stock', '<=', (int) $request->input('max_stock'));
         }
 
@@ -43,7 +46,7 @@ class ProductController
      * @bodyParam stock integer required Počet kusů. Example: 150
      * @response 201 {"name": "Produkt", "price": 12.5, "stock": 300, ...}
      */
-    public function storeProduct(Request $request)
+    public function storeProduct(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'name' => 'required|string',
@@ -71,7 +74,7 @@ class ProductController
      * @response 404 {"message": "Product not found"}
      */
 
-    public function showProduct($id)
+    public function showProduct($id): JsonResponse
     {
         $product = Product::findOrFail($id);
         return response()->json($product);
@@ -94,7 +97,7 @@ class ProductController
      * }
      * @response 404 {"message": "Product not found"}
      */
-    public function updateProduct(Request $request, $id)
+    public function updateProduct(Request $request, $id): JsonResponse
     {
         $product = Product::findOrFail($id);
 
@@ -125,10 +128,10 @@ class ProductController
      * @response 200 {"message": "Product deleted"}
      * @response 404 {"message": "Product not found"}
      */
-    public function deleteProduct($id)
+    public function deleteProduct($id): JsonResponse
     {
         $product = Product::findOrFail($id);
-        $productName = product->name;
+        $productName = $product->name;
         $message = "Product " . $productName . " deleted";
         $product->delete();
 
@@ -151,9 +154,10 @@ class ProductController
      * ]
      * @response 404 {"message": "Product not found"}
      */
-    public function priceHistory($id)
+    public function priceHistory($id): JsonResponse
     {
         $product = Product::findOrFail($id);
+        
         return response()->json($product->priceChanges()->orderBy('changed_at', 'desc')->get());
     }
 }
